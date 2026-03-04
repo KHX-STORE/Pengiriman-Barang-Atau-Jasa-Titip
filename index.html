@@ -265,6 +265,31 @@ Terima kasih atas kerjasamanya.`;
     window.open(url, '_blank');
   });
 </script>
+const message = `*PENGIRIMAN PAKET*
 
+Dengan hormat,
+
+Berikut detail pemesanan pengiriman paket:
+
+----------------------------------------
+
+Nama Barang : ${barang}
+
+Pengirim    : ${pengirim}
+Penerima    : ${penerima}
+Lokasi      : ${lokasi}
+
+Invoice     : ${invoice}
+Tanggal     : ${tanggal}
+Pembayaran  : ${pembayaranFormatted}
+Kode Promo  : ${promo}
+
+Catatan :
+${note}
+
+----------------------------------------
+
+Mohon konfirmasi dan proses sesuai data di atas.
+Terima kasih.`;
 </body>
 </html>
