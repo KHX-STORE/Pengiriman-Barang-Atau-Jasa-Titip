@@ -56,6 +56,7 @@
       margin-bottom:25px;
       font-weight:600;
       color:var(--gold);
+      letter-spacing:0.5px;
     }
 
     .form-group{
@@ -121,12 +122,6 @@
       font-size:12px;
       color:var(--gray);
       margin-top:20px;
-    }
-
-    @media(max-width:480px){
-      .container{
-        padding:22px;
-      }
     }
   </style>
 </head>
@@ -237,21 +232,34 @@
       ? formatRupiah(Number(pembayaranVal)) 
       : "-";
 
-    const message = `*Pengiriman Paket*
+    const message = `📦 *KONFIRMASI PENGIRIMAN PAKET*
 
- _Nama Barang_ : _${barang}_
- _Pengirim_ : _${pengirim}_
-      Penerima_ : _${penerima}_
-     *Lokasi : ${lokasi}*
-🧾 Invoice : ${invoice}
-📅 Tanggal : ${tanggal}
-💳 Pembayaran : ${pembayaranFormatted}
-Kode Promo : ${promo}
+Berikut adalah detail pemesanan pengiriman paket:
 
-Note : ${note}`;
+━━━━━━━━━━━━━━━━━━
+📦 *Informasi Barang*
+• Nama Barang : ${barang}
+
+👤 *Data Pengirim & Penerima*
+• Pengirim    : ${pengirim}
+• Penerima    : ${penerima}
+• Tujuan      : ${lokasi}
+
+🧾 *Detail Transaksi*
+• Invoice     : ${invoice}
+• Tanggal     : ${tanggal}
+• Pembayaran  : ${pembayaranFormatted}
+• Kode Promo  : ${promo}
+
+📝 *Catatan Pengirim*
+${note}
+━━━━━━━━━━━━━━━━━━
+
+Mohon untuk diproses sesuai detail di atas.
+Terima kasih atas kerjasamanya.`;
 
     const encoded = encodeURIComponent(message);
-    const nomorWA = "6285602569720"; 
+    const nomorWA = "6285602569720";
     const url = `https://wa.me/${nomorWA}?text=${encoded}`;
 
     window.open(url, '_blank');
