@@ -1,283 +1,260 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pemesanan Pengiriman Paket</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyBKurier - Pemesanan Pengiriman</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --navy:#0f172a;
-      --navy-light:#1e293b;
-      --gold:#d4af37;
-      --soft-blue:#3b82f6;
-      --green-wa:#1f9d55;
-      --white:#ffffff;
-      --gray:#94a3b8;
-    }
+<style>
+:root{
+  --bg:#0b1220;
+  --card:#111827;
+  --accent:#d4af37;
+  --soft:#1f2937;
+  --text:#f9fafb;
+  --muted:#9ca3af;
+  --green:#1f9d55;
+}
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Inter',sans-serif;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
 
-    body{
-      background:linear-gradient(135deg,#0f172a,#1e293b);
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:20px;
-      animation:fadeIn 0.8s ease-in-out;
-    }
+body{
+  background:linear-gradient(135deg,#0b1220,#111827);
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  color:var(--text);
+  animation:fadeIn 0.8s ease-in-out;
+}
 
-    @keyframes fadeIn{
-      from{opacity:0;transform:translateY(10px);}
-      to{opacity:1;transform:translateY(0);}
-    }
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(15px);}
+  to{opacity:1;transform:translateY(0);}
+}
 
-    .container{
-      background:var(--navy-light);
-      width:100%;
-      max-width:500px;
-      padding:30px;
-      border-radius:12px;
-      box-shadow:0 15px 40px rgba(0,0,0,0.4);
-      color:var(--white);
-    }
+.container{
+  background:var(--card);
+  width:100%;
+  max-width:520px;
+  padding:35px;
+  border-radius:12px;
+  box-shadow:0 20px 45px rgba(0,0,0,0.5);
+}
 
-    h1{
-      text-align:center;
-      font-size:22px;
-      margin-bottom:25px;
-      font-weight:600;
-      color:var(--gold);
-      letter-spacing:0.5px;
-    }
+.brand{
+  text-align:center;
+  margin-bottom:5px;
+  font-size:24px;
+  font-weight:700;
+  color:var(--accent);
+  letter-spacing:1px;
+}
 
-    .form-group{
-      display:flex;
-      flex-direction:column;
-      margin-bottom:18px;
-    }
+.tagline{
+  text-align:center;
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:30px;
+}
 
-    label{
-      font-size:13px;
-      margin-bottom:6px;
-      color:var(--gray);
-    }
+.form-group{
+  display:flex;
+  flex-direction:column;
+  margin-bottom:18px;
+}
 
-    input, textarea{
-      padding:12px;
-      border-radius:12px;
-      border:none;
-      outline:none;
-      background:#0f172a;
-      color:var(--white);
-      font-size:14px;
-    }
+label{
+  font-size:13px;
+  margin-bottom:6px;
+  color:var(--muted);
+}
 
-    input:focus, textarea:focus{
-      border:1px solid var(--soft-blue);
-    }
+input, textarea{
+  padding:12px;
+  border-radius:12px;
+  border:1px solid transparent;
+  background:var(--soft);
+  color:var(--text);
+  font-size:14px;
+  transition:0.3s;
+}
 
-    textarea{
-      resize:none;
-    }
+input:focus, textarea:focus{
+  border:1px solid var(--accent);
+  outline:none;
+}
 
-    .total-display{
-      font-weight:600;
-      color:var(--gold);
-      margin-top:5px;
-      font-size:14px;
-    }
+textarea{
+  resize:none;
+}
 
-    button{
-      width:100%;
-      padding:14px;
-      border:none;
-      border-radius:12px;
-      background:var(--green-wa);
-      color:white;
-      font-weight:600;
-      font-size:15px;
-      cursor:pointer;
-      transition:all 0.3s ease;
-      margin-top:10px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.3);
-    }
+.total-display{
+  font-size:13px;
+  margin-top:6px;
+  color:var(--accent);
+  font-weight:600;
+}
 
-    button:hover{
-      transform:translateY(-2px);
-      box-shadow:0 12px 25px rgba(0,0,0,0.4);
-      background:#15803d;
-    }
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:var(--green);
+  color:white;
+  font-weight:600;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.3s;
+  margin-top:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.4);
+}
 
-    footer{
-      text-align:center;
-      font-size:12px;
-      color:var(--gray);
-      margin-top:20px;
-    }
-  </style>
+button:hover{
+  transform:translateY(-2px);
+  background:#15803d;
+  box-shadow:0 14px 30px rgba(0,0,0,0.5);
+}
+
+footer{
+  text-align:center;
+  font-size:12px;
+  color:var(--muted);
+  margin-top:20px;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="container">
-    <h1>Form Pengiriman Paket</h1>
+<div class="container">
+  <div class="brand">MyBKurier</div>
+  <div class="tagline">Solusi Cepat, Pelayanan Tepat.</div>
 
-    <form id="orderForm">
+  <form id="orderForm">
 
-      <div class="form-group">
-        <label>Nama Barang</label>
-        <input type="text" id="barang" required>
-      </div>
+    <div class="form-group">
+      <label>Nama Barang</label>
+      <input type="text" id="barang" required>
+    </div>
 
-      <div class="form-group">
-        <label>Nama Pengirim</label>
-        <input type="text" id="pengirim" required>
-      </div>
+    <div class="form-group">
+      <label>Nama Pengirim</label>
+      <input type="text" id="pengirim" required>
+    </div>
 
-      <div class="form-group">
-        <label>Nama Penerima</label>
-        <input type="text" id="penerima" required>
-      </div>
+    <div class="form-group">
+      <label>Nama Penerima</label>
+      <input type="text" id="penerima" required>
+    </div>
 
-      <div class="form-group">
-        <label>Lokasi Tujuan</label>
-        <input type="text" id="lokasi" required>
-      </div>
+    <div class="form-group">
+      <label>Lokasi Tujuan</label>
+      <input type="text" id="lokasi" required>
+    </div>
 
-      <div class="form-group">
-        <label>Pembayaran (Opsional)</label>
-        <input type="number" id="pembayaran">
-        <div class="total-display" id="totalFormatted">Rp -</div>
-      </div>
+    <div class="form-group">
+      <label>Pembayaran (Opsional)</label>
+      <input type="number" id="pembayaran">
+      <div class="total-display" id="totalFormatted">Rp -</div>
+    </div>
 
-      <div class="form-group">
-        <label>Kode Promo (Opsional)</label>
-        <input type="text" id="promo">
-      </div>
+    <div class="form-group">
+      <label>Kode Promo (Opsional)</label>
+      <input type="text" id="promo">
+    </div>
 
-      <div class="form-group">
-        <label>Catatan</label>
-        <textarea id="note" rows="3"></textarea>
-      </div>
+    <div class="form-group">
+      <label>Catatan</label>
+      <textarea id="note" rows="3"></textarea>
+    </div>
 
-      <button type="submit">Kirim ke WhatsApp</button>
-    </form>
+    <button type="submit">Kirim Permintaan</button>
+  </form>
 
-    <footer>
-      Website by Muhammad Khusain Abdillah
-    </footer>
-  </div>
+  <footer>
+    Website by Muhammad Khusain Abdillah
+  </footer>
+</div>
 
 <script>
-  const form = document.getElementById('orderForm');
-  const pembayaranInput = document.getElementById('pembayaran');
-  const totalFormatted = document.getElementById('totalFormatted');
+const form = document.getElementById('orderForm');
+const pembayaranInput = document.getElementById('pembayaran');
+const totalFormatted = document.getElementById('totalFormatted');
 
-  pembayaranInput.addEventListener('input', function(){
-    if(this.value){
-      totalFormatted.innerText = formatRupiah(Number(this.value));
-    } else {
-      totalFormatted.innerText = "Rp -";
-    }
+pembayaranInput.addEventListener('input', function(){
+  if(this.value){
+    totalFormatted.innerText = formatRupiah(Number(this.value));
+  } else {
+    totalFormatted.innerText = "Rp -";
+  }
+});
+
+function formatRupiah(angka){
+  return "Rp " + angka.toLocaleString('id-ID');
+}
+
+function generateInvoice(){
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth()+1).padStart(2,'0');
+  const day = String(now.getDate()).padStart(2,'0');
+  const random = Math.floor(1000 + Math.random()*9000);
+  return `INV-${year}${month}${day}-${random}`;
+}
+
+function formatTanggalIndonesia(date){
+  return date.toLocaleDateString('id-ID',{
+    year:'numeric',
+    month:'long',
+    day:'numeric'
   });
+}
 
-  function formatRupiah(angka){
-    return "Rp " + angka.toLocaleString('id-ID');
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const barang = document.getElementById('barang').value.trim();
+  const pengirim = document.getElementById('pengirim').value.trim();
+  const penerima = document.getElementById('penerima').value.trim();
+  const lokasi = document.getElementById('lokasi').value.trim();
+  const pembayaranVal = document.getElementById('pembayaran').value;
+  const promo = document.getElementById('promo').value.trim() || "-";
+  const note = document.getElementById('note').value.trim() || "-";
+
+  if(!barang || !pengirim || !penerima || !lokasi){
+    alert("Mohon lengkapi data yang diperlukan.");
+    return;
   }
 
-  function generateInvoice(){
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth()+1).padStart(2,'0');
-    const day = String(now.getDate()).padStart(2,'0');
-    const random = Math.floor(1000 + Math.random()*9000);
-    return `INV-${year}${month}${day}-${random}`;
-  }
+  const invoice = generateInvoice();
+  const tanggal = formatTanggalIndonesia(new Date());
+  const pembayaranFormatted = pembayaranVal 
+    ? formatRupiah(Number(pembayaranVal)) 
+    : "-";
 
-  function formatTanggalIndonesia(date){
-    return date.toLocaleDateString('id-ID',{
-      year:'numeric',
-      month:'long',
-      day:'numeric'
-    });
-  }
+  const message = `MyBKurier
 
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
+Terima kasih telah mempercayakan pengiriman Anda kepada kami.
 
-    const barang = document.getElementById('barang').value.trim();
-    const pengirim = document.getElementById('pengirim').value.trim();
-    const penerima = document.getElementById('penerima').value.trim();
-    const lokasi = document.getElementById('lokasi').value.trim();
-    const pembayaranVal = document.getElementById('pembayaran').value;
-    const promo = document.getElementById('promo').value.trim() || "-";
-    const note = document.getElementById('note').value.trim() || "-";
+Berikut detail permintaan pengiriman:
 
-    if(!barang || !pengirim || !penerima || !lokasi){
-      alert("Mohon isi semua field wajib.");
-      return;
-    }
-
-    const invoice = generateInvoice();
-    const tanggal = formatTanggalIndonesia(new Date());
-    const pembayaranFormatted = pembayaranVal 
-      ? formatRupiah(Number(pembayaranVal)) 
-      : "-";
-
-    const message = ` *KONFIRMASI PENGIRIMAN PAKET*
-
-Berikut adalah detail pemesanan pengiriman paket:
-
-━━━━━━━━━━━━━━━━━━
- *Informasi Barang*
-• Nama Barang : ${barang}
-
- *Data Pengirim & Penerima*
-• Pengirim    : ${pengirim}
-• Penerima    : ${penerima}
-• Tujuan      : ${lokasi}
-
- *Detail Transaksi*
-• Invoice     : ${invoice}
-• Tanggal     : ${tanggal}
-• Pembayaran  : ${pembayaranFormatted}
-• Kode Promo  : ${promo}
-
- *Catatan Pengirim*
-${note}
-━━━━━━━━━━━━━━━━━━
-
-Mohon untuk diproses sesuai detail di atas.
-Terima kasih atas kerjasamanya.`;
-
-    const encoded = encodeURIComponent(message);
-    const nomorWA = "6285602569720";
-    const url = `https://wa.me/${nomorWA}?text=${encoded}`;
-
-    window.open(url, '_blank');
-  });
-</script>
-const message = `*PENGIRIMAN PAKET*
-
-Dengan hormat,
-
-Berikut detail pemesanan pengiriman paket:
-
-----------------------------------------
+--------------------------------------------------
 
 Nama Barang : ${barang}
 
 Pengirim    : ${pengirim}
 Penerima    : ${penerima}
-Lokasi      : ${lokasi}
+Tujuan      : ${lokasi}
 
 Invoice     : ${invoice}
 Tanggal     : ${tanggal}
@@ -287,9 +264,18 @@ Kode Promo  : ${promo}
 Catatan :
 ${note}
 
-----------------------------------------
+--------------------------------------------------
 
-Mohon konfirmasi dan proses sesuai data di atas.
-Terima kasih.`;
+Tim MyBKurier akan segera meninjau dan memproses permintaan Anda.
+
+Solusi Cepat, Pelayanan Tepat.`;
+
+  const encoded = encodeURIComponent(message);
+  const url = `https://wa.me/6285602569720?text=${encoded}`;
+
+  window.open(url, '_blank');
+});
+</script>
+
 </body>
 </html>
