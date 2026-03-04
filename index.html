@@ -158,9 +158,9 @@
       </div>
 
       <div class="form-group">
-        <label>Jumlah Pembayaran (Rp)</label>
-        <input type="number" id="pembayaran" required>
-        <div class="total-display" id="totalFormatted">Rp 0</div>
+        <label>Pembayaran (Opsional)</label>
+        <input type="number" id="pembayaran">
+        <div class="total-display" id="totalFormatted">Rp -</div>
       </div>
 
       <div class="form-group">
@@ -187,8 +187,11 @@
   const totalFormatted = document.getElementById('totalFormatted');
 
   pembayaranInput.addEventListener('input', function(){
-    const value = Number(this.value || 0);
-    totalFormatted.innerText = formatRupiah(value);
+    if(this.value){
+      totalFormatted.innerText = formatRupiah(Number(this.value));
+    } else {
+      totalFormatted.innerText = "Rp -";
+    }
   });
 
   function formatRupiah(angka){
@@ -219,18 +222,20 @@
     const pengirim = document.getElementById('pengirim').value.trim();
     const penerima = document.getElementById('penerima').value.trim();
     const lokasi = document.getElementById('lokasi').value.trim();
-    const pembayaran = Number(document.getElementById('pembayaran').value);
+    const pembayaranVal = document.getElementById('pembayaran').value;
     const promo = document.getElementById('promo').value.trim() || "-";
     const note = document.getElementById('note').value.trim() || "-";
 
-    if(!barang || !pengirim || !penerima || !lokasi || !pembayaran){
+    if(!barang || !pengirim || !penerima || !lokasi){
       alert("Mohon isi semua field wajib.");
       return;
     }
 
     const invoice = generateInvoice();
     const tanggal = formatTanggalIndonesia(new Date());
-    const pembayaranFormatted = formatRupiah(pembayaran);
+    const pembayaranFormatted = pembayaranVal 
+      ? formatRupiah(Number(pembayaranVal)) 
+      : "-";
 
     const message = `*Pengiriman Paket*
 
@@ -246,7 +251,7 @@ Kode Promo : ${promo}
 Note : ${note}`;
 
     const encoded = encodeURIComponent(message);
-    const nomorWA = "6285602569720";
+    const nomorWA = "6285602569720"; 
     const url = `https://wa.me/${nomorWA}?text=${encoded}`;
 
     window.open(url, '_blank');
